@@ -12,6 +12,13 @@ const contactAddSchema = Joi.object({
   }),
 })
 
+ const contactPutSchema = Joi.object({
+  name: Joi.string(),
+  email: Joi.string(),
+  phone: Joi.string(),
+ }).options({ allowUnknown: false });
+
 module.exports = {
-    contactAddSchema
+  contactAddSchema,
+  contactPutSchema
 }
