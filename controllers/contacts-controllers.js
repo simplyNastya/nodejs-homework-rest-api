@@ -11,7 +11,7 @@ const listContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
     const { contactId } = req.params
-    const result = await Contact.findById(contactId, '-createdAt -updatedAt')
+    const result = await Contact.findById(contactId)
     if (!result) {
       throw HttpError(404, `Contact with ${contactId} not found`)
     }
@@ -38,7 +38,7 @@ const updateContactById = async (req, res) => {
     const { contactId } = req.params
     const result = await Contact.findByIdAndUpdate(contactId, req.body, {new: true})
     if (!result) {
-      throw HttpError(404, 'missing fields')
+      throw HttpError(404, `Contact with ${contactId} not found`)
     }
     if (JSON.stringify(req.body) === '{}') {
       throw HttpError(400, 'missing fields')
