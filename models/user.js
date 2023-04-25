@@ -32,7 +32,7 @@ const userRegisterLoginSchema = Joi.object({
 });
 
 const userSubscriptionSchema = Joi.object({
-    subscription: Joi.string().required().messages({
+    subscription: Joi.string().regex(/^(starter|pro|business)$/).required().messages({
     'any.required': 'missing field subscription'
   })
 });
