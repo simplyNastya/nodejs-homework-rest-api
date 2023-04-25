@@ -31,8 +31,15 @@ const userRegisterLoginSchema = Joi.object({
     subscription: Joi.string(),
 });
 
+const userSubscriptionSchema = Joi.object({
+    subscription: Joi.string().required().messages({
+    'any.required': 'missing field subscription'
+  })
+});
+
 const schemas = {
-    userRegisterLoginSchema,
+  userRegisterLoginSchema,
+  userSubscriptionSchema,
 }
 
 const User = model('user', userSchema)
