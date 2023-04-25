@@ -25,21 +25,14 @@ const userSchema = new Schema({
 
 userSchema.post('save', handleMangooseError)
 
-const userRegisterSchema = Joi.object({
-    password: Joi.string().min(6).required(),
-    email: Joi.string().pattern(emailRegexp).required(),
-    subscription: Joi.string(),
-});
-
-const userLoginSchema = Joi.object({
+const userRegisterLoginSchema = Joi.object({
     password: Joi.string().min(6).required(),
     email: Joi.string().pattern(emailRegexp).required(),
     subscription: Joi.string(),
 });
 
 const schemas = {
-    userRegisterSchema,
-    userLoginSchema,
+    userRegisterLoginSchema,
 }
 
 const User = model('user', userSchema)
