@@ -27,7 +27,7 @@ const register = async (req, res) => {
 
     const hashPassword = await bcryptjs.hash(password, 10)
 
-    const avatarURL = gravatar.url(email).resize(250, 250)
+    const avatarURL = gravatar.url(email)
     
     const newUser = await User.create({...req.body, password: hashPassword, avatarURL})
     res.status(201).json({
@@ -56,9 +56,11 @@ const login = async (req, res) => {
     await User.findByIdAndUpdate(user._id, { token })
     
     res.json({
-        token,
-        email: user.email,
-        subscription: user.subscription,
+        user: {
+            token,
+            email: user.email,
+            subscription: user.subscription,
+        }
     })
 }
 
