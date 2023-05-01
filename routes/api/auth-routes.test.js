@@ -18,17 +18,13 @@ describe('test auth route', () => {
         server.close()
         await User.deleteMany({})
         await mongoose.connection.close()
-        
-
     })
 
     beforeEach(() => {
-
     })
 
-    afterEach(async () => {
-         
-     })
+    afterEach(async () => {   
+    })
 
     test('register correct data', async () => {
         const registerData = {
