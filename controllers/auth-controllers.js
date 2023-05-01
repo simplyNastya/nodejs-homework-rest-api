@@ -6,8 +6,6 @@ const path = require('path')
 
 const gravatar = require('gravatar')
 
-const Jimp = require("jimp")
-
 const { User } = require('../models/user')
 
 const { ctrlWrapper } = require('../utils')
