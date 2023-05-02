@@ -29,6 +29,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Verify token is required'],
   },
+  avatarURL: String,
 }, {versionKey: false})
 
 userSchema.post('save', handleMangooseError)
@@ -37,6 +38,7 @@ const userRegisterLoginSchema = Joi.object({
     password: Joi.string().min(6).required(),
     email: Joi.string().pattern(emailRegexp).required(),
     subscription: Joi.string(),
+    avatarURL: Joi.string(),
 });
 
 const userSubscriptionSchema = Joi.object({
