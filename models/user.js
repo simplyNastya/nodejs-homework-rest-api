@@ -20,7 +20,15 @@ const userSchema = new Schema({
     enum: ["starter", "pro", "business"],
     default: "starter"
   },
-  token: String
+  token: String,
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: {
+    type: String,
+    required: [true, 'Verify token is required'],
+  },
 }, {versionKey: false})
 
 userSchema.post('save', handleMangooseError)
@@ -37,9 +45,14 @@ const userSubscriptionSchema = Joi.object({
   })
 });
 
+const emailSchema = Joi.object({
+    email: Joi.string().pattern(emailRegexp).required(),
+});
+
 const schemas = {
   userRegisterLoginSchema,
   userSubscriptionSchema,
+  emailSchema,
 }
 
 const User = model('user', userSchema)
