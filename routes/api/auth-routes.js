@@ -12,6 +12,10 @@ const { authenticate, upload } = require('../../middlewares')
 
 router.post('/register', validateBody(schemas.userRegisterLoginSchema), authController.register)
 
+router.get('/verify/:verificationToken', authController.verifyEmail)
+
+router.post('/verify', validateBody(schemas.emailSchema), authController.resendVerifyEmail)
+
 router.post('/login', validateBody(schemas.userRegisterLoginSchema), authController.login)
 
 router.get('/current', authenticate, authController.getCurrent) 
